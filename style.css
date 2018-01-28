@@ -1,17 +1,26 @@
+body{
+	background-color: gray;
+}
+
+h1{
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 28px;
+	margin-bottom: 6px;
+	text-align: center;
+	color: white;
+}
+
 #container {
-	margin-left: 160px;
-	width: 960px;
-	height: auto; /*settle on a fixed height */
+	margin-left: 350px;
+	width: 600px; /*650 */
+	height: 600px; /*settle on a fixed height */
 	border: 1px solid black;
 }
 
 .content {
 	margin: 0 auto;
 	display: inline-block;
-	background-color: blue;
+	background-color: white;
 	vertical-align: top;
 }
 
-.black{
-	background-color: black;
-}

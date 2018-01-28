@@ -7,8 +7,8 @@ const gridSquares = document.querySelectorAll('.content');
 gridSquares.forEach((square) => {
 
 	square.addEventListener('mouseenter', (e) =>{
-		square.classList.add('black');
-		console.log = "hello";
+		//square.classList.add('black');
+		square.style.backgroundColor = 'black';
 	})
 });
 
@@ -20,7 +20,7 @@ function createGrid(){
 
 function createRow(){
 	//const content = null;
-	let width = 960 / 16;
+	let width = 600 / 16;
 	//let height = 
 	for(let i = 0; i < 16; i++){
 		const content = document.createElement('div');
