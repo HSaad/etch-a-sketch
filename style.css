@@ -1,0 +1,17 @@
+#container {
+	margin-left: 160px;
+	width: 960px;
+	height: auto; /*settle on a fixed height */
+	border: 1px solid black;
+}
+
+.content {
+	margin: 0 auto;
+	display: inline-block;
+	background-color: blue;
+	vertical-align: top;
+}
+
+.black{
+	background-color: black;
+}
