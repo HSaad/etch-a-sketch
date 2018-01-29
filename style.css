@@ -13,14 +13,13 @@ h1{
 #container {
 	margin-left: 350px;
 	width: 600px; /*650 */
-	height: 600px; /*settle on a fixed height */
-	border: 1px solid black;
+	height: auto; /*settle on a fixed height */
+	/*border: 1px solid black;*/
 }
 
 .content {
+	vertical-align: top;
 	margin: 0 auto;
 	display: inline-block;
 	background-color: white;
-	vertical-align: top;
 }
-
