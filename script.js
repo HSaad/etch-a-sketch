@@ -1,6 +1,6 @@
 const container = document.querySelector('#container');
 
-createGrid(16);
+createGrid(16); //initial grid
 
 draw();
 
@@ -14,8 +14,14 @@ const generateButton = document.querySelector('#newGrid');
 generateButton.addEventListener('click', (e)=>{
 	deleteGrid();
 	let num = +document.querySelector('input').value;
-	createGrid(num);
-	draw();
+	if(isNaN(num) || num > 200){
+		alert("Please Enter a Number Less Than 200");
+		createGrid(16);
+		draw();
+	}else{
+		createGrid(num);
+		draw();
+	}
 });
 
 clearButton.addEventListener('click', (e) => {
@@ -31,7 +37,6 @@ eraserButton.addEventListener('click', (e) =>{
 });
 
 randomButton.addEventListener('click', (e)=>{
-	//random color
 	let randomColor = getRandomColor();
 	draw(randomColor);
 });
@@ -51,11 +56,11 @@ pencilButton.addEventListener('click', (e)=>{
 		let opacity = 0;
 		square.addEventListener('mouseenter', (e)=>{
 			if(opacity != 0){
+				square.style.backgroundColor = `rgba(30, 30, 30, ${opacity/10})`;
 				opacity ++;
-				square.style.backgroundColor = `rgba(0, 0, 0, ${opacity/10})`;
 			}
 			else{ //first time mouse passes over
-				square.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+				square.style.backgroundColor = 'rgba(30, 30, 30, 0.05)';
 				opacity++;
 			}
 		})
@@ -76,11 +81,9 @@ function draw(colorName){
 	gridSquares.forEach((square) => {
 
 		square.addEventListener('mouseenter', (e) =>{
-			//square.classList.add('black');
 			if(colorName == undefined){
 				square.style.backgroundColor = 'rgb(0, 0, 0, 1)';
 			}else{
-				console.log(colorName);
 				square.style.backgroundColor = colorName;
 			}
 		})
