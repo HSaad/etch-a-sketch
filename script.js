@@ -1,7 +1,6 @@
 const container = document.querySelector('#container');
 
 createGrid(16); //initial grid
-
 draw();
 
 const clearButton = document.querySelector('#clear');
@@ -16,6 +15,7 @@ generateButton.addEventListener('click', (e)=>{
 	let num = +document.querySelector('input').value;
 	if(isNaN(num) || num > 200){
 		alert("Please Enter a Number Less Than 200");
+		document.querySelector('input').value = "16";
 		createGrid(16);
 		draw();
 	}else{
@@ -27,7 +27,7 @@ generateButton.addEventListener('click', (e)=>{
 clearButton.addEventListener('click', (e) => {
 	let gridSquares = document.querySelectorAll('.content');
 	gridSquares.forEach((square) =>{
-		square.style.backgroundColor = 'white';
+		square.style.backgroundColor = ' #f8f9f9';
 	})
 	draw(); 
 });
