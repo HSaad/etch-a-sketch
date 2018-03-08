@@ -17,10 +17,10 @@ generateButton.addEventListener('click', (e)=>{
 		alert("Please Enter a Number Less Than 200");
 		document.querySelector('input').value = "16";
 		createGrid(16);
-		draw();
+		draw("black");
 	}else{
 		createGrid(num);
-		draw();
+		draw("black");
 	}
 });
 
@@ -29,11 +29,11 @@ clearButton.addEventListener('click', (e) => {
 	gridSquares.forEach((square) =>{
 		square.style.backgroundColor = ' #f8f9f9';
 	})
-	draw(); 
+	draw("black"); 
 });
 
 eraserButton.addEventListener('click', (e) =>{
-	draw("white");
+	draw("#f8f9f9");
 });
 
 randomButton.addEventListener('click', (e)=>{
