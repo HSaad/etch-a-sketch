@@ -82,7 +82,7 @@ function draw(colorName){
 
 		square.addEventListener('mouseenter', (e) =>{
 			if(colorName == undefined){
-				square.style.backgroundColor = 'rgb(0, 0, 0, 1)';
+				square.style.backgroundColor = 'black';
 			}else{
 				square.style.backgroundColor = colorName;
 			}
