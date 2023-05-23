@@ -1,0 +1,17 @@
+.container {
+    width: 750px;
+    height: 750px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    flex: 1;
+    display: flex;
+}
+
+.flex-square {
+    flex: 1;
+    border: 1px solid blue;
+}
