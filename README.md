@@ -2,9 +2,9 @@
 
 Functionality:
 - Pen
-- Random Color
 - Rainbow Mode
 - Pencil
 - Eraser
 - Clear (Board)
+- Color Picker
 - Generate Board (with selected number)

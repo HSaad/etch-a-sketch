@@ -1,14 +1,40 @@
 let container = document.querySelector('.container');
 
+// Pen movement - click and draw
 let mouseDown = false;
 container.addEventListener("mouseup", () => mouseDown = false);
 container.addEventListener("mousedown", () => mouseDown = true);
 
+//Tool buttons
+let tool = "draw";
+let drawButton = document.querySelector("#draw");
+drawButton.addEventListener("click", (e) => selectTool(e));
+
+let eraseButton = document.querySelector("#erase");
+eraseButton.addEventListener("click", (e) => selectTool(e));
+
+let colorPicker = document.querySelector("#colorPicker");
+
+
+function selectTool(toolElement){
+  //clear previous selection
+  let selectedTools = document.querySelectorAll(".selected");
+  selectedTools.forEach((element) => {
+    element.classList.remove("selected");
+  });
+
+  toolElement.target.classList.add("selected");
+  tool = toolElement.target.id;
+}
 
 function draw(grid){
   let square = grid.target;
   if( grid.type === 'mouseover' && !mouseDown) return;
-  square.style.backgroundColor = "black";
+  if(tool == "draw"){
+    square.style.backgroundColor = colorPicker.value;;
+  } else if (tool == "erase"){
+    square.style.backgroundColor = "white";
+  }
 }
 
 function createRow(num){
