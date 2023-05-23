@@ -15,6 +15,17 @@ eraseButton.addEventListener("click", (e) => selectTool(e));
 
 let colorPicker = document.querySelector("#colorPicker");
 
+let clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", clearBoard);
+
+function clearBoard(){
+  console.log("Clearing");
+  let squares = document.querySelectorAll(".flex-square");
+  
+  squares.forEach((square) => {
+    square.style.backgroundColor = "white";
+  });
+}
 
 function selectTool(toolElement){
   //clear previous selection
