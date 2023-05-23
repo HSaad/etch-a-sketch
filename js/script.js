@@ -1,5 +1,15 @@
-console.log("Hello World")
 let container = document.querySelector('.container');
+
+let mouseDown = false;
+container.addEventListener("mouseup", () => mouseDown = false);
+container.addEventListener("mousedown", () => mouseDown = true);
+
+
+function draw(grid){
+  let square = grid.target;
+  if( grid.type === 'mouseover' && !mouseDown) return;
+  square.style.backgroundColor = "black";
+}
 
 function createRow(num){
   let row = document.createElement('div');
@@ -8,6 +18,8 @@ function createRow(num){
   for(let i = 0; i < num; i++){
     let grid = document.createElement('div');
     grid.classList.add("flex-square");
+    grid.addEventListener('mouseover', (e) => draw(e));
+    grid.addEventListener('mousedown', (e) => draw(e));
     row.appendChild(grid);
   }
 
@@ -18,14 +30,6 @@ function createBoard(num){
   for(let i = 0; i < num; i++){
     createRow(num);
   }
-//     restartButton = document.createElement('button');
-//     let parentContainer = document.querySelector('body');
-
-//     restartButton.id = "restart";
-//     restartButton.textContent = "Play Again?";
-//     restartButton.addEventListener('click', () => refreshPage());
-
-//     parentContainer.appendChild(restartButton);
 }
 
 createBoard(16);
