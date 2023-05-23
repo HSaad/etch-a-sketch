@@ -5,11 +5,9 @@ let mouseDown = false;
 container.addEventListener("mouseup", () => mouseDown = false);
 container.addEventListener("mousedown", () => mouseDown = true);
 
-//Pencil Functionality - Opacity settings
-let opacity = 0.1;
-
 //Tool buttons
 let tool = "draw";
+
 let drawButton = document.querySelector("#draw");
 drawButton.addEventListener("click", (e) => selectTool(e));
 
@@ -27,8 +25,16 @@ pencilButton.addEventListener("click", (e) => selectTool(e));
 let rainbowButton = document.querySelector("#rainbow");
 rainbowButton.addEventListener("click", (e) => selectTool(e));
 
+let gridNumberButton = document.querySelector("#gridNum");
+gridNumberButton.addEventListener("mouseup", (e) => {
+  let gridNumberLabel = document.querySelector("label");
+  gridNumberLabel.textContent = `Grid (1 to 100): ${e.target.value}`;
+  deleteBoard();
+  createBoard(e.target.value);
+  console.log(e.target.value)
+});
+
 function clearBoard(){
-  console.log("Clearing");
   let squares = document.querySelectorAll(".flex-square");
   
   squares.forEach((square) => {
@@ -70,9 +76,7 @@ function draw(grid){
 function randomColor(){
     let letters = "0123456789ABCDEF";
     let color = '#';
-      
-    //generating 6 times as HTML color code consist
-    // of 6 letter or digits
+
     for (let i = 0; i < 6; i++){
       color += letters[(Math.floor(Math.random() * 16))];
     }
@@ -98,6 +102,11 @@ function createBoard(num){
   for(let i = 0; i < num; i++){
     createRow(num);
   }
+}
+
+function deleteBoard(){
+  let board = document.querySelector(".container");
+  board.textContent = "";
 }
 
 createBoard(16);
