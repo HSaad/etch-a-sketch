@@ -5,6 +5,9 @@ let mouseDown = false;
 container.addEventListener("mouseup", () => mouseDown = false);
 container.addEventListener("mousedown", () => mouseDown = true);
 
+//Pencil Functionality - Opacity settings
+let opacity = 0.1;
+
 //Tool buttons
 let tool = "draw";
 let drawButton = document.querySelector("#draw");
@@ -17,6 +20,9 @@ let colorPicker = document.querySelector("#colorPicker");
 
 let clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", clearBoard);
+
+let pencilButton = document.querySelector("#pencil");
+pencilButton.addEventListener("click", (e) => selectTool(e));
 
 function clearBoard(){
   console.log("Clearing");
@@ -42,9 +48,16 @@ function draw(grid){
   let square = grid.target;
   if( grid.type === 'mouseover' && !mouseDown) return;
   if(tool == "draw"){
-    square.style.backgroundColor = colorPicker.value;;
+    square.style.backgroundColor = colorPicker.value;
   } else if (tool == "erase"){
     square.style.backgroundColor = "white";
+  } else if (tool == "pencil"){
+      square.style.backgroundColor = colorPicker.value;
+      if(square.style.opacity == ""){
+        square.style.opacity = 0.1;
+      }else {
+        square.style.opacity = Number(square.style.opacity) + 0.1;
+      }
   }
 }
 
