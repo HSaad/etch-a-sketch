@@ -24,6 +24,9 @@ clearButton.addEventListener("click", clearBoard);
 let pencilButton = document.querySelector("#pencil");
 pencilButton.addEventListener("click", (e) => selectTool(e));
 
+let rainbowButton = document.querySelector("#rainbow");
+rainbowButton.addEventListener("click", (e) => selectTool(e));
+
 function clearBoard(){
   console.log("Clearing");
   let squares = document.querySelectorAll(".flex-square");
@@ -52,13 +55,28 @@ function draw(grid){
   } else if (tool == "erase"){
     square.style.backgroundColor = "white";
   } else if (tool == "pencil"){
-      square.style.backgroundColor = colorPicker.value;
-      if(square.style.opacity == ""){
-        square.style.opacity = 0.1;
-      }else {
-        square.style.opacity = Number(square.style.opacity) + 0.1;
-      }
+    square.style.backgroundColor = colorPicker.value;
+    if(square.style.opacity == ""){
+      square.style.opacity = 0.1;
+    }else {
+      square.style.opacity = Number(square.style.opacity) + 0.1;
+    }
+  }else if (tool == "rainbow"){
+    //generate random color
+    square.style.backgroundColor = randomColor();
   }
+}
+
+function randomColor(){
+    let letters = "0123456789ABCDEF";
+    let color = '#';
+      
+    //generating 6 times as HTML color code consist
+    // of 6 letter or digits
+    for (let i = 0; i < 6; i++){
+      color += letters[(Math.floor(Math.random() * 16))];
+    }
+    return color;
 }
 
 function createRow(num){
