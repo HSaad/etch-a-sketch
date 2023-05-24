@@ -1,4 +1,4 @@
-let container = document.querySelector('.container');
+let container = document.querySelector('.board');
 
 // Pen movement - click and draw
 let mouseDown = false;
@@ -28,7 +28,7 @@ rainbowButton.addEventListener("click", (e) => selectTool(e));
 let gridNumberButton = document.querySelector("#gridNum");
 gridNumberButton.addEventListener("mouseup", (e) => {
   let gridNumberLabel = document.querySelector("label");
-  gridNumberLabel.textContent = `Grid (1 to 100): ${e.target.value}`;
+  gridNumberLabel.textContent = `${e.target.value} x ${e.target.value}`;
   deleteBoard();
   createBoard(e.target.value);
   console.log(e.target.value)
@@ -57,8 +57,10 @@ function draw(grid){
   let square = grid.target;
   if( grid.type === 'mouseover' && !mouseDown) return;
   if(tool == "draw"){
+    square.style.opacity = "";
     square.style.backgroundColor = colorPicker.value;
   } else if (tool == "erase"){
+    square.style.opacity = "";
     square.style.backgroundColor = "white";
   } else if (tool == "pencil"){
     square.style.backgroundColor = colorPicker.value;
@@ -68,6 +70,7 @@ function draw(grid){
       square.style.opacity = Number(square.style.opacity) + 0.1;
     }
   }else if (tool == "rainbow"){
+    square.style.opacity = "";
     //generate random color
     square.style.backgroundColor = randomColor();
   }
@@ -105,8 +108,7 @@ function createBoard(num){
 }
 
 function deleteBoard(){
-  let board = document.querySelector(".container");
-  board.textContent = "";
+  container.textContent = "";
 }
 
 createBoard(16);
