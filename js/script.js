@@ -1,38 +1,7 @@
 let container = document.querySelector('.board');
-
-// Pen movement - click and draw
 let mouseDown = false;
-container.addEventListener("mouseup", () => mouseDown = false);
-container.addEventListener("mousedown", () => mouseDown = true);
-
-//Tool buttons
 let tool = "draw";
-
-let drawButton = document.querySelector("#draw");
-drawButton.addEventListener("click", (e) => selectTool(e));
-
-let eraseButton = document.querySelector("#erase");
-eraseButton.addEventListener("click", (e) => selectTool(e));
-
 let colorPicker = document.querySelector("#colorPicker");
-
-let clearButton = document.querySelector("#clear");
-clearButton.addEventListener("click", clearBoard);
-
-let pencilButton = document.querySelector("#pencil");
-pencilButton.addEventListener("click", (e) => selectTool(e));
-
-let rainbowButton = document.querySelector("#rainbow");
-rainbowButton.addEventListener("click", (e) => selectTool(e));
-
-let gridNumberButton = document.querySelector("#gridNum");
-gridNumberButton.addEventListener("mouseup", (e) => {
-  let gridNumberLabel = document.querySelector("label");
-  gridNumberLabel.textContent = `${e.target.value} x ${e.target.value}`;
-  deleteBoard();
-  createBoard(e.target.value);
-  console.log(e.target.value)
-});
 
 function clearBoard(){
   let squares = document.querySelectorAll(".flex-square");
@@ -42,13 +11,15 @@ function clearBoard(){
   });
 }
 
-function selectTool(toolElement){
-  //clear previous selection
+function clearPrevSelection(){
   let selectedTools = document.querySelectorAll(".selected");
   selectedTools.forEach((element) => {
     element.classList.remove("selected");
   });
+}
 
+function selectTool(toolElement){
+  clearPrevSelection();
   toolElement.target.classList.add("selected");
   tool = toolElement.target.id;
 }
@@ -71,7 +42,6 @@ function draw(grid){
     }
   }else if (tool == "rainbow"){
     square.style.opacity = "";
-    //generate random color
     square.style.backgroundColor = randomColor();
   }
 }
@@ -111,4 +81,36 @@ function deleteBoard(){
   container.textContent = "";
 }
 
-createBoard(16);
+function generateNewBoard(e){
+  let gridNumberLabel = document.querySelector("label");
+  gridNumberLabel.textContent = `${e.target.value} x ${e.target.value}`;
+  deleteBoard();
+  createBoard(e.target.value);
+}
+
+function initializeBoard(){
+  container.addEventListener("mouseup", () => mouseDown = false);
+  container.addEventListener("mousedown", () => mouseDown = true);
+
+  let drawButton = document.querySelector("#draw");
+  drawButton.addEventListener("click", (e) => selectTool(e));
+
+  let eraseButton = document.querySelector("#erase");
+  eraseButton.addEventListener("click", (e) => selectTool(e));
+
+  let clearButton = document.querySelector("#clear");
+  clearButton.addEventListener("click", clearBoard);
+
+  let pencilButton = document.querySelector("#pencil");
+  pencilButton.addEventListener("click", (e) => selectTool(e));
+
+  let rainbowButton = document.querySelector("#rainbow");
+  rainbowButton.addEventListener("click", (e) => selectTool(e));
+
+  let gridNumberButton = document.querySelector("#gridNum");
+  gridNumberButton.addEventListener("mouseup", (e) => generateNewBoard(e));
+
+  createBoard(16);
+}
+
+initializeBoard();
