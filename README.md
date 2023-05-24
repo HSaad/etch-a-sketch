@@ -1,10 +1,12 @@
-# etch-a-sketch
+# Etch-A-Sketch
 
 Functionality:
-- Pen
-- Rainbow Mode
+- Color Picker
+- Draw (i.e Pen)
 - Pencil
+- Rainbow Mode
 - Eraser
 - Clear (Board)
-- Color Picker
-- Generate Board (with selected number)
+- Generate Board (with selected grid size)
+
+[Live Site](https://hsaad.github.io/etch-a-sketch/)
